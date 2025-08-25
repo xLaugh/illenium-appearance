@@ -1,10 +1,10 @@
 fx_version "cerulean"
 game "gta5"
 
-author "snakewiz & iLLeniumStudios"
+author "snakewiz,iLLeniumStudios & xLaugh"
 description "A flexible player customization script for FiveM servers."
-repository "https://github.com/iLLeniumStudios/illenium-appearance"
-version "main"
+repository "https://github.com/xLaugh/illenium-appearance"
+version "v5.8.0"
 
 lua54 "yes"
 
@@ -36,7 +36,6 @@ client_scripts {
   "client/radial/ox.lua",
   "client/stats.lua",
   "client/defaults.lua",
-  "client/blips.lua",
   "client/props.lua",
   "client/client.lua",
 }

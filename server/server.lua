@@ -329,7 +329,7 @@ if Config.EnablePedMenu then
                 return
             end
         end
-        TriggerClientEvent("illenium-appearance:client:openClothingShopMenu", target, true)
+        TriggerClientEvent("illenium-appearance:client:openPedMenu", target)
     end)
 end
 

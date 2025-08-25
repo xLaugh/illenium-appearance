@@ -196,12 +196,41 @@ local function setPlayerModel(model)
         SetModelAsNoLongerNeeded(model)
 
         if isPedFreemodeModel(cache.ped) then
-            SetPedDefaultComponentVariation(cache.ped)
-             -- Check if the model is male or female, then change the face mix based on this.
-             if model == `mp_m_freemode_01` then
+            -- Appliquer les vêtements par défaut selon le genre
+            if model == `mp_m_freemode_01` then
+                SetPedDefaultComponentVariation(cache.ped)
                 SetPedHeadBlendData(cache.ped, 0, 0, 0, 0, 0, 0, 0, 0, 0, false)
+                -- Appliquer les vêtements par défaut pour homme
+                local maleClothes = Config.InitialPlayerClothes.Male
+                if maleClothes then
+                    for _, component in ipairs(maleClothes.Components) do
+                        SetPedComponentVariation(cache.ped, component.component_id, component.drawable, component.texture, 0)
+                    end
+                    for _, prop in ipairs(maleClothes.Props) do
+                        if prop.drawable == -1 then
+                            ClearPedProp(cache.ped, prop.prop_id)
+                        else
+                            SetPedPropIndex(cache.ped, prop.prop_id, prop.drawable, prop.texture, true)
+                        end
+                    end
+                end
             elseif model == `mp_f_freemode_01` then
+                SetPedDefaultComponentVariation(cache.ped)
                 SetPedHeadBlendData(cache.ped, 45, 21, 0, 20, 15, 0, 0.3, 0.1, 0, false)
+                -- Appliquer les vêtements par défaut pour femme
+                local femaleClothes = Config.InitialPlayerClothes.Female
+                if femaleClothes then
+                    for _, component in ipairs(femaleClothes.Components) do
+                        SetPedComponentVariation(cache.ped, component.component_id, component.drawable, component.texture, 0)
+                    end
+                    for _, prop in ipairs(femaleClothes.Props) do
+                        if prop.drawable == -1 then
+                            ClearPedProp(cache.ped, prop.prop_id)
+                        else
+                            SetPedPropIndex(cache.ped, prop.prop_id, prop.drawable, prop.texture, true)
+                        end
+                    end
+                end
             end
         end
 

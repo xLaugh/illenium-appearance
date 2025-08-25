@@ -68,7 +68,6 @@ function InitAppearance()
             LoadPlayerUniform()
         end
     end)
-    ResetBlips()
     if Config.BossManagedOutfits then
         Management.AddItems()
     end
@@ -171,7 +170,21 @@ local function OpenClothingShop(isPedMenu)
     OpenShop(config, isPedMenu, "clothing")
 end
 
+local function OpenPedMenu()
+    local config = GetDefaultConfig()
+    config.components = false  -- Pas de vêtements
+    config.props = false       -- Pas de props
+    config.tattoos = false     -- Pas de tatouages
+    config.ped = true
+    config.headBlend = true
+    config.faceFeatures = true
+    config.headOverlays = true
+    OpenShop(config, true, "clothing")
+end
+
 RegisterNetEvent("illenium-appearance:client:openClothingShop", OpenClothingShop)
+
+RegisterNetEvent("illenium-appearance:client:openPedMenu", OpenPedMenu)
 
 RegisterNetEvent("illenium-appearance:client:importOutfitCode", function()
     local response = lib.inputDialog(_L("outfits.import.title"), {
